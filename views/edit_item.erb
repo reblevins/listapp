@@ -1,0 +1,5 @@
+<% if @event && @item %>
+  <%= erb(:'partials/edit_item_form', :event => @event, :item => @item) %>  
+<% else %>  
+  <p>Item not found.</p>  
+<% end %>

@@ -1,0 +1,120 @@
+<% content_for :head do %>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.editinplace.js"></script>
+    <script type="text/javascript">
+      jQuery.fn.highlight = function() {
+         $(this).each(function() {
+              var el = $(this);
+              el.before("<div/>")
+              el.prev()
+                  .width( "640px" )
+                  .height( "38px" )
+                  .css({
+                      "position": "absolute",
+                      "background-color": "#ffff99",
+                      "opacity": ".9"   
+                  })
+                  .fadeOut(2000);
+          });
+      }
+      $(document).ready(function (){
+        $("#event_name").editInPlace({
+        	url: '/update_event_name',
+        	params: 'id=<%= @event.id %>',
+        	show_buttons: true,
+        	saving_image: "/images/ajax-loader.gif"
+        });
+        
+        $("#event_description").editInPlace({
+        	url: "/update_event_description",
+        	params: 'id=<%= @event.id %>',
+        	field_type: "textarea",
+        	textarea_rows: "15",
+        	textarea_cols: "35",
+        	saving_image: "/images/ajax-loader.gif",
+        	show_buttons: true
+        });
+        
+        $("#event_date").editInPlace({
+        	url: '/update_event_date',
+        	params: 'id=<%= @event.id %>',
+        	show_buttons: true,
+        	saving_image: "/images/ajax-loader.gif"
+        });
+        
+        $(".item_name").editInPlace({
+        	url: '/update_item_name',
+        	show_buttons: true,
+        	saving_image: "/images/ajax-loader.gif"
+        });
+        
+        $(".item_amount").editInPlace({
+        	url: '/update_item_amount',
+        	field_type: "select",
+        	select_text: "",
+        	select_options: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20",
+        	saving_image: "/images/ajax-loader.gif"
+        });
+        
+        $('#new_item_form').submit(function(ev){
+          //this happens if form is submitted
+          //prevent the default behavior of a form (it should do nothing in our case)
+          ev.preventDefault();
+ 
+          //send an ajax request to our action
+          $.ajax({
+            url: "/<%= @event.id %>/add",
+            //serialize the form and use it as data for our ajax request
+            data: $(this).serialize(),
+            type: "POST",
+            //the type of data we are expecting back from server, could be json too
+            dataType: "html",
+            success: function(data) {
+              //if our ajax request is successful, replace the content of our viz div with the response data
+              $( '#items_list' ).append( data );
+              $( '#new_item_form' )[0].reset();
+              $( '.list_item' ).last().highlight();
+              $(".item_name").editInPlace({
+              	url: '/update_item_name',
+              	show_buttons: true,
+              	saving_image: "/images/ajax-loader.gif"
+              });
+              
+              $(".item_amount").editInPlace({
+              	url: '/update_item_amount',
+              	field_type: "select",
+              	select_text: "",
+              	select_options: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20",
+              	saving_image: "/images/ajax-loader.gif"
+              });
+            }
+          }); 
+        });
+      });
+  </script>
+<% end %>
+<% if @event %>
+  <h1 id="event_name"><%= @event.name %></h1>
+  <p id="event_description"><%= @event.description %></p>
+  <p id="event_meta"><span id="event_date"><%=h @event.occurs_on.strftime('%a %b %d, %Y %l:%M %p') %></span> | <a id="event_delete" href="/<%= @event.id %>/delete">Delete this event</a></p>
+  <% if @items %>
+  <ul id="items_list">
+    <li id="list_header"><div id="list_header_name">Item name</div><div id="list_header_amount">Amount</div></li>
+  <% @items.each do |item| %>
+    <% @item = item %>
+    <%= erb(:'partials/list_item.js', :collection => @item) %>
+  <% end %>
+  </ul>
+  <% else %>
+  <p>There are no items in this event yet. You can add your first one below.</p>
+  <% end %>
+  <section id="add">  
+    <form id="new_item_form" action="/<%= @event.id %>/add" method="post">
+      <input id="item_name_input" type="text" name="name" value="" />
+      <select name="item_amount_input"><option selected="" value="">Choose an amount</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select>
+      <input type="submit" value="Add item">  
+    </form>  
+  </section>
+<% else %>  
+  <p>Note not found.</p>  
+<% end %>

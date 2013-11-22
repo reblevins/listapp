@@ -1,0 +1,14 @@
+<%= erb(:'partials/new_event_form') %>
+  
+<% @events.each do |event| %>  
+  <article>  
+    <p>    
+      <span><a href="/<%= event.id %>"><%=h event.name %></a></span> 
+      <span><a href="/<%= event.id %>/delete">[delete]</a></span> 
+    </p>  
+    <!--<p class="links">  
+      <a href="/<%= event.id %>/complete">&#8623;</a>  
+    </p>-->  
+    <p class="meta">Created: <%= event.created_at %></p>  
+  </article>  
+<% end %>

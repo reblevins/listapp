@@ -1,0 +1,10 @@
+<% if @event %>  
+  <p>Are you sure you want to delete the following event: <em>"<%=h @event.name %>"</em>?</p>  
+  <form action="/<%= @event.id %>" method="post">  
+    <input type="hidden" name="_method" value="delete">  
+    <input type="submit" value="Yes, Delete It!">  
+    <a href="/<%= @event.id %>">Cancel</a>  
+  </form>  
+<% else %>  
+  <p>Note not found.</p>  
+<% end %>

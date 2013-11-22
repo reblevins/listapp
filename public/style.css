@@ -1,0 +1,159 @@
+/* @override 
+	http://127.0.0.1:4567/style.css */
+
+body {  
+    margin: 35px auto;  
+    width: 640px;  
+}  
+  
+header {  
+    text-align: center;  
+    margin: 0 0 20px;  
+}  
+  
+header h1 {  
+    display: inline;  
+    font-size: 32px;  
+}  
+  
+header h1 a:link, header h1 a:visited {  
+    color: #444;  
+    text-decoration: none;  
+}  
+  
+header h2 {  
+    font-size: 16px;  
+    font-style: italic;  
+    color: #999;  
+}  
+  
+#main {  
+    margin: 0 0 20px;  
+}  
+  
+#add {  
+    margin: 0 0 20px;  
+}  
+ 
+label {
+  display: block;
+}  
+  
+article {  
+    border: 1px solid #eee;  
+    border-top: none;  
+    padding: 15px 10px;  
+}  
+  
+article:first-of-type {  
+    border: 1px solid #eee;  
+}  
+  
+article:nth-child(even) {  
+    background: #fafafa;  
+}  
+  
+article.complete {  
+    background: #fedae3;  
+}  
+  
+article span {  
+    font-size: 0.8em;  
+}  
+  
+p {  
+    margin: 0 0 5px;  
+}  
+  
+.meta {  
+    font-size: 0.8em;  
+    font-style: italic;  
+    color: #888;  
+}  
+  
+.links {  
+    font-size: 1.8em;  
+    line-height: 0.8em;  
+    float: rightright;  
+    margin: -10px 0 0;  
+}  
+  
+.links a {  
+    display: block;  
+    text-decoration: none;  
+}
+
+.notice { color: green; }  
+
+.error, .error_0, .error_1, .error_2, .error_3, .error_4 {
+  color: red;
+  padding: 3px;
+  border: 1px solid red;
+}
+
+ul#items_list {
+  margin-left: 0 !important;
+}
+
+#item_name_input {
+  width: 61%;
+}
+
+li#list_header, li.list_item, #new_item_form {
+  list-style: none;
+  padding: 10px 10px;
+}
+
+li#list_header div {
+  display: inline;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+li.list_item, #new_item_form {
+  background-color: #bcfebc;
+  border: 1px solid #2e8f01;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+h1#event_name {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+p#event_description {
+  font-size: 16px;
+}
+
+a#event_delete {
+  color: red;
+}
+
+a#event_delete:hover {
+  background-color: red;
+  color: white;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.list_item span form {
+  display: inline;
+}
+
+.item_name, #list_header_name {
+  width: 75%;
+  float: left;
+}
+
+.item_amount {
+  display: inline;
+  padding: 1px 3px;
+  background-color: #ebfeeb;
+}
+
+.item_meta {
+  float: right;
+}

@@ -1,0 +1,10 @@
+<li id="item_<%= @item.id %>" class="list_item<%= ' claimed' if @item.claimed %>">
+  <span class="item_name"><%=h @item.name %></span>
+  <span class="item_amount"><%=h @item.amount %></span>
+  <span class="item_edit"><a href="/<%= @event.id %>/<%= @item.id %>">[edit]</a></span> 
+  <span><form action="/<%= @event.id %>/<%= @item.id %>/delete_item" method="post">  
+    <input type="hidden" name="_method" value="delete">  
+    <input type="submit" value="delete">  
+  </form></span>
+  <!-- Created: <%= @item.created_at %> | Updated: <%= @item.updated_at %> -->
+</li>

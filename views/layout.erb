@@ -1,0 +1,42 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+  <meta charset="utf8">  
+  <title><%= "#{@title} | #{SITE_TITLE}" %></title>
+  <link href="/reset.css" rel="stylesheet">  
+  <link href="/style.css" rel="stylesheet">  
+  <link href="/rss.xml" rel="alternate" type="application/rss+xml">
+  
+  <%= yield_content(:head) %>
+</head>  
+<body>  
+  <header>  
+    <hgroup>  
+      <h1><a href="/"><%= SITE_TITLE %></a></h1>  
+      <h2><%= SITE_DESCRIPTION %></h2>  
+    </hgroup>  
+  </header>  
+  
+  <p><a href="/auth/login">Log In</a> | <a href="/protected">Protected Page</a> | <a href="/auth/logout">Log Out</a></p>
+  
+  <div id="main">
+    <% if flash.success %>
+    <div style="color:green;">
+      <%= flash.success %>
+    </div>
+    <% end %>
+  
+    <% if flash.error %>
+    <div style="color:red;">
+      <%= flash.error %>
+    </div>
+    <% end %>
+    
+    <%= yield %>  
+  </div>  
+  
+  <footer>  
+    <p><small>An app for <a href="http://net.tutsplus.com">Nettuts+</a>.</small></p>  
+  </footer>  
+</body>  
+</html>

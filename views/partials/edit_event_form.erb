@@ -1,0 +1,10 @@
+<form action="/<%= @event.id %>" method="post" id="edit">  
+  <input type="hidden" name="_method" value="put">
+  <label for="name">Event Name:</label>
+  <input type="text" name="name" value="<%=h @event.name %>">
+  <label for="description">Event Description:</label>
+  <textarea name="description"><%=h @event.description %></textarea>
+  <label for="occurs_on">Event Date:</label>
+  <input type="text" name="occurs_on" value="<%=h @event.occurs_on.strftime('%a %b %d, %Y %l:%M %p') %>">
+  <input type="submit">  
+</form>

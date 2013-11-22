@@ -1,0 +1,11 @@
+<section id="add">  
+  <form action="/" method="post">
+    <label for="name">Event Name:</label>
+    <input type="text" name="name" value="" />
+    <label for="description">Event Description:</label>
+    <textarea name="description" placeholder=""></textarea>
+    <label for="occurs_on">Event Date:</label>
+    <input type="text" name="occurs_on" value="<%= Time.now %>" />
+    <input type="submit" value="Create Event!">  
+  </form>  
+</section>
